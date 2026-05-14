@@ -12,13 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 362f705af58c4537a7f25748d14df177, type: 3}
   m_Name: WorldGenerationConfig
   m_EditorClassIdentifier: Assembly-CSharp::Configs.WorldGenerationConfig
-  noiseType: 0
+  noiseType: 3
   noiseSeed: 12345
   perlinNoiseConfig:
     freq: 12
     amplitude: 80
   whiteNoiseConfig:
     amplitude: 80
+  simplexNoiseConfig:
+    freq: 12
+    amplitude: 80
+  fractalPerlinNoiseConfig:
+    octavesCount: 6
+    persistence: 0.5
+    lacunarity: 2
   chunksSqrWorldSize: 50
   chunkSize: 32
   chunkConfig:
