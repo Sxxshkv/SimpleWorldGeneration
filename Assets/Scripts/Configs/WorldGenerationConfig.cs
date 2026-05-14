@@ -10,7 +10,8 @@ namespace Configs
         {
             Perlin,
             White,
-            Simplex
+            Simplex,
+            FractalPerlin
         }
 
         [Serializable]
@@ -34,6 +35,14 @@ namespace Configs
         }
 
         [Serializable]
+        public class FractalPerlinNoiseConfig
+        {
+            public int octavesCount;
+            public float persistence;
+            public float lacunarity;
+        }
+
+        [Serializable]
         public class ChunkConfig
         {
             public Material surfaceMeshMaterial;
@@ -45,6 +54,7 @@ namespace Configs
         public PerlinNoiseConfig perlinNoiseConfig;
         public WhiteNoiseConfig whiteNoiseConfig;
         public SimplexNoiseConfig simplexNoiseConfig;
+        public FractalPerlinNoiseConfig fractalPerlinNoiseConfig;
         public int chunksSqrWorldSize;
         public int chunkSize;
         public ChunkConfig chunkConfig;

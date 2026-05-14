@@ -5,6 +5,7 @@ namespace SimpleWorldGeneration.NoiseGenerator
 {
     public class PerlinNoiseGenerator : BaseNoiseGenerator
     {
+        public float frequency => _frequency;
         public override float amplitude => _amplitude;
 
         readonly int[] _perm;

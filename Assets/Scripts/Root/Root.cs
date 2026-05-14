@@ -31,6 +31,16 @@ namespace SimpleWorldGeneration
                     _worldGenerationConfig.simplexNoiseConfig.freq,
                     _worldGenerationConfig.simplexNoiseConfig.amplitude
                 ),
+                WorldGenerationConfig.NoiseType.FractalPerlin => new FractalPerlinNoiseGenerator(
+                    new PerlinNoiseGenerator(
+                        _worldGenerationConfig.noiseSeed,
+                        _worldGenerationConfig.perlinNoiseConfig.freq,
+                        _worldGenerationConfig.perlinNoiseConfig.amplitude
+                    ),
+                    _worldGenerationConfig.fractalPerlinNoiseConfig.octavesCount,
+                    _worldGenerationConfig.fractalPerlinNoiseConfig.persistence,
+                    _worldGenerationConfig.fractalPerlinNoiseConfig.lacunarity
+                ),
                 _ => throw new ArgumentOutOfRangeException()
             };
 
