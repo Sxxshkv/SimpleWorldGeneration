@@ -6,12 +6,18 @@ namespace Configs
     [CreateAssetMenu(menuName = "Configs/WorldGeneration", fileName = "WorldGeneration")]
     public class WorldGenerationConfig : ScriptableObject
     {
+        public enum NoiseType
+        {
+            Perlin,
+            White
+        }
+
         [Serializable]
-        public class PerlinNoiseConfig
+        public class NoiseConfig
         {
             public int seed;
-            public float noiseFreq;
-            public float noiseAmplitude;
+            public float freq;
+            public float amplitude;
         }
 
         [Serializable]
@@ -21,7 +27,8 @@ namespace Configs
             public int chunkGoLayer;
         }
 
-        public PerlinNoiseConfig perlinNoiseConfig;
+        public NoiseType noiseType;
+        public NoiseConfig noiseConfig;
         public int chunksSqrWorldSize;
         public int chunkSize;
         public ChunkConfig chunkConfig;

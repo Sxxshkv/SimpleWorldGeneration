@@ -13,6 +13,13 @@ namespace SimpleWorldGeneration.WorldGenerator
 
         public class NoiseContext
         {
+            public enum NoiseType
+            {
+                Perlin,
+                White
+            }
+
+            public NoiseType noiseType;
             public float freq;
             public float amplitude;
         }

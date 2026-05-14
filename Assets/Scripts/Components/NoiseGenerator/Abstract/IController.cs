@@ -2,6 +2,12 @@ namespace SimpleWorldGeneration.NoiseGenerator
 {
     public interface IController
     {
-        float Noise(float x, float y, float frequency, float amplitude);
+        public enum NoiseType
+        {
+            White,
+            Perlin
+        }
+
+        float Noise(float x, float y, float frequency, float amplitude, NoiseType noiseType);
     }
 }

@@ -15,10 +15,12 @@ namespace SimpleWorldGeneration.WorldGenerator.Logic
 
         Dictionary<Vector2Int, Chunk> _activeChunks;
         readonly ColorCalculator _colorCalculator;
+        readonly NoiseTypeConverter _noiseTypeConverter;
 
         public ChunksGenerator(ColorCalculator colorCalculator)
         {
             _colorCalculator = colorCalculator;
+            _noiseTypeConverter = new NoiseTypeConverter();
         }
 
         public void Generate(GenerationSettings settings, NoiseGenerator.IController noiseGenerator)
@@ -89,7 +91,8 @@ namespace SimpleWorldGeneration.WorldGenerator.Logic
                         worldNormX,
                         worldNormY,
                         settings.noiseContext.freq,
-                        settings.noiseContext.amplitude
+                        settings.noiseContext.amplitude,
+                        _noiseTypeConverter.Convert(settings.noiseContext.noiseType)
                     );
 
                     vertices[i] = new Vector3(worldX, worldY, height);

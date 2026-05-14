@@ -13,7 +13,7 @@ namespace SimpleWorldGeneration
 
         void Start()
         {
-            var noiseGenerator = new NoiseGenerator.Component(_worldGenerationConfig.perlinNoiseConfig.seed);
+            var noiseGenerator = new NoiseGenerator.Component(_worldGenerationConfig.noiseConfig.seed);
 
             var worldGenerator = new WorldGenerator.Component();
 
@@ -29,8 +29,9 @@ namespace SimpleWorldGeneration
                 },
                 noiseContext = new GenerationSettings.NoiseContext
                 {
-                    freq = _worldGenerationConfig.perlinNoiseConfig.noiseFreq,
-                    amplitude = _worldGenerationConfig.perlinNoiseConfig.noiseAmplitude
+                    noiseType = new NoiseTypeConverter().Convert(_worldGenerationConfig.noiseType),
+                    freq = _worldGenerationConfig.noiseConfig.freq,
+                    amplitude = _worldGenerationConfig.noiseConfig.amplitude
                 }
             };
 

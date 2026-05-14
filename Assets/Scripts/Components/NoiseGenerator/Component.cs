@@ -9,8 +9,9 @@ namespace SimpleWorldGeneration.NoiseGenerator
         public Component(int initialSeed)
         {
             var perlinNoise = new Logic.PerlinNoise(initialSeed);
+            var whiteNoise = new Logic.WhiteNoise(initialSeed);
 
-            var controller = new Interface.Controller(perlinNoise);
+            var controller = new Interface.Controller(perlinNoise, whiteNoise);
 
             _controller = controller;
         }
