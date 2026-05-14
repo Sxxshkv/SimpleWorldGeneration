@@ -19,7 +19,7 @@ namespace SimpleWorldGeneration.NoiseGenerator.Interface
             switch (noiseType)
             {
                 case IController.NoiseType.White:
-                    return _whiteNoise.Noise(x, y, frequency, amplitude);
+                    return _whiteNoise.Noise(x, y, amplitude);
 
                 case IController.NoiseType.Perlin:
                     return _perlinNoise.Noise(x, y, frequency, amplitude);
