@@ -32,10 +32,12 @@ namespace SimpleWorldGeneration.NoiseGenerator
             _amplitude = amplitude;
         }
 
-        public override float Noise(float x, float y)
+        public override float Noise(float x, float y) => CalculateNoise(x, y, _frequency, _amplitude);
+
+        public float CalculateNoise(float x, float y, float frequency, float amplitude)
         {
-            x *= _frequency;
-            y *= _frequency;
+            x *= frequency;
+            y *= frequency;
 
             int X = (int)MathF.Floor(x) & 255;
             int Y = (int)MathF.Floor(y) & 255;
@@ -68,7 +70,7 @@ namespace SimpleWorldGeneration.NoiseGenerator
             float u0 = Lerp(dot00, dot10, u);
             float u1 = Lerp(dot01, dot11, u);
 
-            return Lerp(u0, u1, v) * _amplitude;
+            return Lerp(u0, u1, v) * amplitude;
         }
 
         int[] GeneratePermutation(int seed)
