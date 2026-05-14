@@ -1,17 +1,21 @@
-namespace SimpleWorldGeneration.NoiseGenerator.Logic
+namespace SimpleWorldGeneration.NoiseGenerator
 {
-    public class WhiteNoise
+    public class WhiteNoise : BaseNoiseGenerator
     {
+        public override float amplitude => _amplitude;
+
         readonly uint _seedA;
         readonly uint _seedB;
+        readonly float _amplitude;
 
-        public WhiteNoise(int seed)
+        public WhiteNoise(int seed, float amplitude)
         {
             _seedA = (uint)seed;
             _seedB = (uint)(seed ^ 0x9E3779B9U);
+            _amplitude = amplitude;
         }
 
-        public float Noise(float x, float y, float amplitude = 1.0f)
+        public override float Noise(float x, float y)
         {
             const int resolution = 1_000_000;
             uint ix = (uint)(x * resolution);
@@ -21,7 +25,7 @@ namespace SimpleWorldGeneration.NoiseGenerator.Logic
 
             float value = ((hash & 0x7FFFFFFF) / (float)int.MaxValue) - 1.0f;
 
-            return value * amplitude;
+            return value * _amplitude;
         }
 
         uint Hash(uint x, uint y)

@@ -13,10 +13,15 @@ namespace Configs
         }
 
         [Serializable]
-        public class NoiseConfig
+        public class PerlinNoiseConfig
         {
-            public int seed;
             public float freq;
+            public float amplitude;
+        }
+
+        [Serializable]
+        public class WhiteNoiseConfig
+        {
             public float amplitude;
         }
 
@@ -28,7 +33,9 @@ namespace Configs
         }
 
         public NoiseType noiseType;
-        public NoiseConfig noiseConfig;
+        public int noiseSeed;
+        public PerlinNoiseConfig perlinNoiseConfig;
+        public WhiteNoiseConfig whiteNoiseConfig;
         public int chunksSqrWorldSize;
         public int chunkSize;
         public ChunkConfig chunkConfig;

@@ -1,17 +1,18 @@
 using System;
 using Utilities.Extensions.Tuple;
 
-namespace SimpleWorldGeneration.NoiseGenerator.Logic
+namespace SimpleWorldGeneration.NoiseGenerator
 {
-    public class PerlinNoise
+    public class PerlinNoise : BaseNoiseGenerator
     {
-        public float Noise(float x, float y, float frequency = 1f, float amplitude = 1f) =>
-            Noise(x * frequency, y * frequency) * amplitude;
+        public override float amplitude => _amplitude;
 
         readonly int[] _perm;
         readonly (float x, float y)[] _gradients;
+        readonly float _frequency;
+        readonly float _amplitude;
 
-        public PerlinNoise(int seed = 0)
+        public PerlinNoise(int seed, float frequency, float amplitude)
         {
             _gradients = new (float x, float y)[]
             {
@@ -26,10 +27,15 @@ namespace SimpleWorldGeneration.NoiseGenerator.Logic
             };
 
             _perm = GeneratePermutation(seed);
+            _frequency = frequency;
+            _amplitude = amplitude;
         }
 
-        float Noise(float x, float y)
+        public override float Noise(float x, float y)
         {
+            x *= _frequency;
+            y *= _frequency;
+
             int X = (int)MathF.Floor(x) & 255;
             int Y = (int)MathF.Floor(y) & 255;
 
@@ -61,7 +67,7 @@ namespace SimpleWorldGeneration.NoiseGenerator.Logic
             float u0 = Lerp(dot00, dot10, u);
             float u1 = Lerp(dot01, dot11, u);
 
-            return Lerp(u0, u1, v);
+            return Lerp(u0, u1, v) * _amplitude;
         }
 
         int[] GeneratePermutation(int seed)

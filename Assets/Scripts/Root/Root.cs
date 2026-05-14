@@ -1,4 +1,6 @@
+using System;
 using Configs;
+using SimpleWorldGeneration.NoiseGenerator;
 using SimpleWorldGeneration.WorldGenerator;
 using UnityEngine;
 
@@ -13,7 +15,19 @@ namespace SimpleWorldGeneration
 
         void Start()
         {
-            var noiseGenerator = new NoiseGenerator.Component(_worldGenerationConfig.noiseConfig.seed);
+            BaseNoiseGenerator baseNoiseGenerator = _worldGenerationConfig.noiseType switch
+            {
+                WorldGenerationConfig.NoiseType.Perlin => new PerlinNoise(
+                    _worldGenerationConfig.noiseSeed,
+                    _worldGenerationConfig.perlinNoiseConfig.freq,
+                    _worldGenerationConfig.perlinNoiseConfig.amplitude
+                ),
+                WorldGenerationConfig.NoiseType.White => new WhiteNoise(
+                    _worldGenerationConfig.noiseSeed,
+                    _worldGenerationConfig.whiteNoiseConfig.amplitude
+                ),
+                _ => throw new ArgumentOutOfRangeException()
+            };
 
             var worldGenerator = new WorldGenerator.Component();
 
@@ -26,16 +40,10 @@ namespace SimpleWorldGeneration
                     material = _worldGenerationConfig.chunkConfig.surfaceMeshMaterial,
                     layer = _worldGenerationConfig.chunkConfig.chunkGoLayer,
                     root = _worldRoot
-                },
-                noiseContext = new GenerationSettings.NoiseContext
-                {
-                    noiseType = new NoiseTypeConverter().Convert(_worldGenerationConfig.noiseType),
-                    freq = _worldGenerationConfig.noiseConfig.freq,
-                    amplitude = _worldGenerationConfig.noiseConfig.amplitude
                 }
             };
 
-            worldGenerator.controller.Generate(worldGenerationSettings, noiseGenerator.controller);
+            worldGenerator.controller.Generate(worldGenerationSettings, baseNoiseGenerator);
 
             _worldGenerator = worldGenerator;
         }

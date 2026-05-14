@@ -1,7 +1,9 @@
+using SimpleWorldGeneration.NoiseGenerator;
+
 namespace SimpleWorldGeneration.WorldGenerator
 {
     public interface IController
     {
-        void Generate(GenerationSettings settings, NoiseGenerator.IController noiseGenerator);
+        void Generate(GenerationSettings settings, BaseNoiseGenerator noiseGenerator);
     }
 }

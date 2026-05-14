@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using SimpleWorldGeneration.NoiseGenerator;
 using UnityEngine;
 
 namespace SimpleWorldGeneration.WorldGenerator.Logic
@@ -15,15 +16,13 @@ namespace SimpleWorldGeneration.WorldGenerator.Logic
 
         Dictionary<Vector2Int, Chunk> _activeChunks;
         readonly ColorCalculator _colorCalculator;
-        readonly NoiseTypeConverter _noiseTypeConverter;
 
         public ChunksGenerator(ColorCalculator colorCalculator)
         {
             _colorCalculator = colorCalculator;
-            _noiseTypeConverter = new NoiseTypeConverter();
         }
 
-        public void Generate(GenerationSettings settings, NoiseGenerator.IController noiseGenerator)
+        public void Generate(GenerationSettings settings, BaseNoiseGenerator noiseGenerator)
         {
             _activeChunks = new Dictionary<Vector2Int, Chunk>();
 
@@ -64,7 +63,7 @@ namespace SimpleWorldGeneration.WorldGenerator.Logic
             return chunk;
         }
 
-        void GenerateChunkMesh(Chunk chunk, GenerationSettings settings, NoiseGenerator.IController noiseGenerator)
+        void GenerateChunkMesh(Chunk chunk, GenerationSettings settings, BaseNoiseGenerator noiseGenerator)
         {
             int chunkSize = settings.chunkSize;
             int chunksSqrWorldSize = settings.chunksSqrWorldSize;
@@ -87,20 +86,14 @@ namespace SimpleWorldGeneration.WorldGenerator.Logic
                     float worldNormX = worldX / (chunkSize * chunksSqrWorldSize);
                     float worldNormY = worldY / (chunkSize * chunksSqrWorldSize);
 
-                    float height = noiseGenerator.Noise(
-                        worldNormX,
-                        worldNormY,
-                        settings.noiseContext.freq,
-                        settings.noiseContext.amplitude,
-                        _noiseTypeConverter.Convert(settings.noiseContext.noiseType)
-                    );
+                    float height = noiseGenerator.Noise(worldNormX, worldNormY);
 
                     vertices[i] = new Vector3(worldX, worldY, height);
 
                     colors[i] = _colorCalculator.GetColorByHeight(
                         height,
-                        -settings.noiseContext.amplitude,
-                        settings.noiseContext.amplitude
+                        -noiseGenerator.amplitude,
+                        noiseGenerator.amplitude
                     );
 
                     if (x < w - 1

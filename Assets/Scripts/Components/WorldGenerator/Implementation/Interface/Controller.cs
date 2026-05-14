@@ -1,3 +1,4 @@
+using SimpleWorldGeneration.NoiseGenerator;
 using SimpleWorldGeneration.WorldGenerator.Logic;
 
 namespace SimpleWorldGeneration.WorldGenerator.Interface
@@ -11,7 +12,7 @@ namespace SimpleWorldGeneration.WorldGenerator.Interface
             _chunksGenerator = chunksGenerator;
         }
 
-        public void Generate(GenerationSettings settings, NoiseGenerator.IController noiseGenerator)
+        public void Generate(GenerationSettings settings, BaseNoiseGenerator noiseGenerator)
         {
             _chunksGenerator.Generate(settings, noiseGenerator);
         }

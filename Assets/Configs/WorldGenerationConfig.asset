@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: WorldGenerationConfig
   m_EditorClassIdentifier: Assembly-CSharp::Configs.WorldGenerationConfig
   noiseType: 0
-  noiseConfig:
-    seed: 0
-    freq: 5
-    amplitude: 85
+  noiseSeed: 12345
+  perlinNoiseConfig:
+    freq: 12
+    amplitude: 80
+  whiteNoiseConfig:
+    amplitude: 80
   chunksSqrWorldSize: 50
   chunkSize: 32
   chunkConfig:
-    surfaceMeshMaterial: {fileID: 2100000, guid: 1d48d98080827d54f8184b335f443bb0, type: 2}
+    surfaceMeshMaterial: {fileID: 2100000, guid: 98d5a229665a1894e9937b702068e40d, type: 2}
     chunkGoLayer: 1
