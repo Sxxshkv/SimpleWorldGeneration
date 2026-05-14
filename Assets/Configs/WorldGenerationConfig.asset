@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362f705af58c4537a7f25748d14df177, type: 3}
+  m_Name: WorldGenerationConfig
+  m_EditorClassIdentifier: Assembly-CSharp::Configs.WorldGenerationConfig
+  perlinNoiseConfig:
+    seed: 0
+    noiseFreq: 6
+    noiseAmplitude: 80
+  chunksSqrWorldSize: 50
+  chunkSize: 32
+  chunkConfig:
+    surfaceMeshMaterial: {fileID: 2100000, guid: 98d5a229665a1894e9937b702068e40d, type: 2}
+    chunkGoLayer: 1
