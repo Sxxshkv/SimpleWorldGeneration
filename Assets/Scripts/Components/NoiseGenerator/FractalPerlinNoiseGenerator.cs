@@ -31,15 +31,13 @@ namespace SimpleWorldGeneration.NoiseGenerator
 
         public override float Noise(float x, float y)
         {
-            float baseFrequency = _perlinNoiseGenerator.frequency;
-
             float total = 0.0f;
-            float amplitude = 1.0f;
-            float frequency = baseFrequency;
+            float amplitude = _perlinNoiseGenerator.amplitude;
+            float frequency = _perlinNoiseGenerator.frequency;
 
             for (int i = 0; i < _octaves; i++)
             {
-                float noiseValue = _perlinNoiseGenerator.Noise(x, y);
+                float noiseValue = _perlinNoiseGenerator.CalculateNoise(x, y, frequency, amplitude);
                 total += noiseValue;
 
                 frequency *= _lacunarity;
