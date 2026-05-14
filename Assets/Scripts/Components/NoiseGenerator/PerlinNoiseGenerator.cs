@@ -3,7 +3,7 @@ using Utilities.Extensions.Tuple;
 
 namespace SimpleWorldGeneration.NoiseGenerator
 {
-    public class PerlinNoise : BaseNoiseGenerator
+    public class PerlinNoiseGenerator : BaseNoiseGenerator
     {
         public override float amplitude => _amplitude;
 
@@ -12,7 +12,7 @@ namespace SimpleWorldGeneration.NoiseGenerator
         readonly float _frequency;
         readonly float _amplitude;
 
-        public PerlinNoise(int seed, float frequency, float amplitude)
+        public PerlinNoiseGenerator(int seed, float frequency, float amplitude)
         {
             _gradients = new (float x, float y)[]
             {

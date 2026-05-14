@@ -17,14 +17,19 @@ namespace SimpleWorldGeneration
         {
             BaseNoiseGenerator baseNoiseGenerator = _worldGenerationConfig.noiseType switch
             {
-                WorldGenerationConfig.NoiseType.Perlin => new PerlinNoise(
+                WorldGenerationConfig.NoiseType.Perlin => new PerlinNoiseGenerator(
                     _worldGenerationConfig.noiseSeed,
                     _worldGenerationConfig.perlinNoiseConfig.freq,
                     _worldGenerationConfig.perlinNoiseConfig.amplitude
                 ),
-                WorldGenerationConfig.NoiseType.White => new WhiteNoise(
+                WorldGenerationConfig.NoiseType.White => new WhiteNoiseGenerator(
                     _worldGenerationConfig.noiseSeed,
                     _worldGenerationConfig.whiteNoiseConfig.amplitude
+                ),
+                WorldGenerationConfig.NoiseType.Simplex => new SimplexNoiseGenerator(
+                    _worldGenerationConfig.noiseSeed,
+                    _worldGenerationConfig.simplexNoiseConfig.freq,
+                    _worldGenerationConfig.simplexNoiseConfig.amplitude
                 ),
                 _ => throw new ArgumentOutOfRangeException()
             };

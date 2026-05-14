@@ -1,6 +1,6 @@
 namespace SimpleWorldGeneration.NoiseGenerator
 {
-    public class WhiteNoise : BaseNoiseGenerator
+    public class WhiteNoiseGenerator : BaseNoiseGenerator
     {
         public override float amplitude => _amplitude;
 
@@ -8,7 +8,7 @@ namespace SimpleWorldGeneration.NoiseGenerator
         readonly uint _seedB;
         readonly float _amplitude;
 
-        public WhiteNoise(int seed, float amplitude)
+        public WhiteNoiseGenerator(int seed, float amplitude)
         {
             _seedA = (uint)seed;
             _seedB = (uint)(seed ^ 0x9E3779B9U);

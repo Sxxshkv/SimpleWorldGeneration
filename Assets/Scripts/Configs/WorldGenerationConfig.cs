@@ -9,7 +9,8 @@ namespace Configs
         public enum NoiseType
         {
             Perlin,
-            White
+            White,
+            Simplex
         }
 
         [Serializable]
@@ -26,6 +27,13 @@ namespace Configs
         }
 
         [Serializable]
+        public class SimplexNoiseConfig
+        {
+            public float freq;
+            public float amplitude;
+        }
+
+        [Serializable]
         public class ChunkConfig
         {
             public Material surfaceMeshMaterial;
@@ -36,6 +44,7 @@ namespace Configs
         public int noiseSeed;
         public PerlinNoiseConfig perlinNoiseConfig;
         public WhiteNoiseConfig whiteNoiseConfig;
+        public SimplexNoiseConfig simplexNoiseConfig;
         public int chunksSqrWorldSize;
         public int chunkSize;
         public ChunkConfig chunkConfig;
